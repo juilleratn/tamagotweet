@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>//chugulu
  <html lang="fr" dir="ltr">
    <head>
      <meta charset="utf-8">
@@ -8,8 +8,9 @@
      <form method="post" target="blank" action="tamagotweet.php">
 
        <textarea name="tweet" rows="4" cols="75"placeholder="limité à 280 caractères" maxlength="280"></textarea>
-       <input type="submit" name="envoi" value="Tweet!">    <!--limiter à 280caracteres-->
+       <input type="submit" name="envoi" value="Tweet!">
 
+<br>
 
 <?php
 
@@ -30,10 +31,11 @@
 
 
       $twitter = new TwitterAPIExchange($settings);
-      echo $twitter->buildOauth($url, $requestMethod)
+      $str =json_decode( echo $twitter->buildOauth($url, $requestMethod)
                    ->setPostfields($postfields)
-                   ->performRequest();
+                   ->performRequest(), $assoc=true);
 
   ?>
+
   </body>
 </html>
