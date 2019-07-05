@@ -1,14 +1,14 @@
-<!DOCTYPE html>//chugulu
+<!DOCTYPE html>
  <html lang="fr" dir="ltr">
    <head>
      <meta charset="utf-8">
      <title>tamagotweet</title>
    </head>
    <body>
-     <form method="post" target="blank" action="tamagotweet.php">
+     <form method="post"  action="tamagotweet.php">
 
        <textarea name="tweet" rows="4" cols="75"placeholder="limité à 280 caractères" maxlength="280"></textarea>
-       <input type="submit" name="envoi" value="Tweet!">
+       <input type="submit" name="btn"  value="Tweet!">
 
 <br>
 
@@ -21,21 +21,32 @@
           'consumer_key'=> "sSzpPYsJahDnNFuPeUPnpkZ5D",
           'consumer_secret'=>"yuG9e2TmyGNu4uUdA3ggFtW0T5Zbos9zc0prSJ0hwf2st8KxGC"
         );
+
         $url="https://api.twitter.com/1.1/statuses/update.json";//creation de tweets
       //$url = "https://api.twitter.com/1.1/search/tweets.json"; recherche
       //$url="https://api.twitter.com/1.1/statuses/user_timeline.json";recuperer les tweets
       //$url = "https://developer.twitter.com/en/docs/tweets/timelines/overview"; doc twitter
-      $requestMethod = "POST";
       $text=$_POST["tweet"];
+      $requestMethod = "POST";
       $postfields= array('status' => $text);
 
 
       $twitter = new TwitterAPIExchange($settings);
-      $str =json_decode( echo $twitter->buildOauth($url, $requestMethod)
+       echo $twitter->buildOauth($url, $requestMethod)
                    ->setPostfields($postfields)
-                   ->performRequest(), $assoc=true);
+                   ->performRequest();
+
+                   if  (!empty($_POST["btn"])){
+                             $txt = fopen('save.txt', 'r+');
+                             $tweets = fgets($txt);
+                             $tweets += 1;
+                             fseek($txt, 0);
+                             fputs($txt, $tweets);
+                             fclose($txt);
+                    }
 
   ?>
+
 
   </body>
 </html>
