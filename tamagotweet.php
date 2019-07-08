@@ -55,7 +55,7 @@
 ////////////////////////////recuperation données
         $url2 = "https://api.twitter.com/1.1/statuses/user_timeline.json";
           $requestMethod2 = "GET";
-          $getfield = "?screen_name=LaetRamo&count=2"; //"?screen_name=".$name."&count=".$nbt
+          $getfield = "?screen_name=LaetRamo&count=5"; //"?screen_name=".$name."&count=".$nbt
           $twitter2 = new TwitterAPIExchange($settings);
           $str =json_decode(
           $twitter2 -> setGetfield($getfield)
@@ -152,6 +152,19 @@ echo $diff;
             fputs($txt, $tweets);
             fclose($txt);
           }
+
+          $tw;
+          foreach($str as $items){
+          $tw[] =  $items['text'];
+          }
+          $items0 = explode(" ",$tw[0]);
+          $items1 = explode(" ",$tw[1]);
+          $items2 = explode(" ",$tw[2]);
+          $items3 = explode(" ",$tw[3]);
+          $items4 = explode(" ",$tw[4]);
+
+echo "</br>".$items0[0]." ".$items1[1]." ".$items2[2]." ".$items3[0]." ".$items4[0]."</br>"."</br>";
+
 
   ?>
 
