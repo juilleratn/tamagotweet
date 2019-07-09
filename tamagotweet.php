@@ -34,7 +34,7 @@
       if (!empty($_POST["btn"])){
                      $txt = fopen('save.txt', 'r+');
                      $tweets = fgets($txt);
-                     $tweets += (int)1;
+                     $tweets += (int) 1;
                      fseek($txt, 0);
                      fputs($txt, $tweets);
                      fclose($txt);
@@ -42,15 +42,15 @@
 //le perso grossit au nombre de tweets //
 
       if($tweets >= 0 && $tweets <= 7){
-            echo '<img src="images/image1.png"/>';
+            echo '<img src="images/phase1.gif"/>';
           }
           elseif($tweets >= 8 && $tweets <= 9 ){
-          echo '<img src="images/image2.png"/>';
+          echo '<img src="images/prevomi.gif"/>';
           }
           elseif ($tweets >= 10 && $tweets <= 11 ){
-          echo '<img src="images/image2.png"/>';
+          echo '<img src="images/vomi.gif"/>';
           }else{
-          echo '<img src="images/image4.png"/>';
+          echo '<img src="images/barbouille.gif"/>';
           }
 ////////////////////////////recuperation données
         $url2 = "https://api.twitter.com/1.1/statuses/user_timeline.json";
@@ -69,23 +69,16 @@ echo "<br>";
         $temps[]= $items['created_at'];
         echo "<br>";
       }
-        print_r ($temps);
 
-      //   il reste a définir le texte du tableau en varaiable
-
+      //   vomi
       $horaire1 = explode(" ",$temps[1]);
       $heure1 = explode(":",$horaire1[3]);
-      echo "<br>";
-  print_r($horaire1);
-  echo "<br>";
-  print_r($heure1);
-  echo "<br>";
-  switch ($horaire1[1]) {
-    case 'Jan':
-      $horaire1[1] = 01;
-      break;
-      case 'Feb':
-      $horaire1[1] = 02;
+      switch ($horaire1[1]) {
+        case 'Jan':
+        $horaire1[1] = 01;
+        break;
+        case 'Feb':
+        $horaire1[1] = 02;
         break;
         case 'Mar':
         $horaire1[1] = 03;
@@ -119,18 +112,14 @@ echo "<br>";
                             break;
                       default:
                         break;
-            }
-print_r($horaire1[1]);
-          $times= mktime($heure1[0],$heure1[1],$heure1[2],$horaire1[1],$horaire1[2],$horaire1[5]);
-echo $times;
-echo "<br>";
-          $now=time();
-          $diff = abs($now - $times);
-echo $diff;
-         $slim1=172800;//2jours
-         $slim2=43200;//12h
-         $slim3=3600;//1h
-          if ($diff>$slim1) {
+                        }
+      $times= mktime($heure1[0],$heure1[1],$heure1[2],$horaire1[1],$horaire1[2],$horaire1[5]);
+        $now=time();
+        $diff = abs($now - $times);
+        $slim1=172800;//2jours
+        $slim2=43200;//12h
+        $slim3=3600;//1h
+        /*  if ($diff>$slim1) {
             $txt = fopen('save.txt', 'r+');
             $tweets = fgets($txt);
             $tweets = (int)0;
@@ -151,7 +140,7 @@ echo $diff;
             fseek($txt, 0);
             fputs($txt, $tweets);
             fclose($txt);
-          }
+          }*/
 
           $tw;
           foreach($str as $items){
@@ -163,7 +152,7 @@ echo $diff;
           $items3 = explode(" ",$tw[3]);
           $items4 = explode(" ",$tw[4]);
 
-echo "</br>".$items0[0]." ".$items1[1]." ".$items2[2]." ".$items3[0]." ".$items4[0]."</br>"."</br>";
+echo "</br>".$items0[0]." ".$items1[1]." ".$items2[2]." ".$items3[3]." ".$items4[1]."</br>"."</br>";
 
 
   ?>
